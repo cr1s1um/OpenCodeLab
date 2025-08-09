@@ -5,6 +5,7 @@
  * Author: Vincenzo Argese
  * Web: https://cr1s1um.github.io/
  * Date: 2025-08-09
+ * Version: v1.0
  * Idea: Youtuber @Enkk video “come funziona: le reti neurali (pt.1)” https://www.youtube.com/watch?v=2UdQQA65jcM
  * 
  * Description:
