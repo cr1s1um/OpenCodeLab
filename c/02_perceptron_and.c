@@ -120,7 +120,7 @@ int main(void)
 }
 
 /* 
- * Activation Function - Step Function
+ * Activation Function
  * 
  * Purpose: Converts continuous weighted sum to binary output
  * Parameter: float sum - the weighted sum from perceptron
