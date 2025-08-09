@@ -33,7 +33,7 @@
 /* Forward declaration of activation function */
 int activation_function(float sum);
 
-int main()
+int main(void)
 {
     /* Training Dataset */
     int
@@ -116,7 +116,7 @@ int main()
                x[i][0], x[i][1], test_output, y[i]);
     }
 
-    return 0;  // Return success status
+    return 0;
 }
 
 /* 
