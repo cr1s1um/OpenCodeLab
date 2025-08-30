@@ -22,7 +22,12 @@ void print_grid(int grid[][GRID_COLS]){
 int main(){
     int grid[GRID_ROWS][GRID_COLS];
     int new_grid[GRID_ROWS][GRID_COLS];
-    grid_inizialize(grid);
+    grid_initialize(grid);
+
+    grid[5][4]=ALIVE;
+    grid[5][5]=ALIVE;
+    grid[5][6]=ALIVE;
+
     print_grid(grid);
     return 0;
 }
