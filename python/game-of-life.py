@@ -13,11 +13,10 @@ Appunti - Grid 5x5
 .....
 
 """
-
 GRID_COLS = 15
 GRID_ROWS = 15
 ALIVE = 1
-DEATH = 0
+DEAD = 0
 GRID_SIZE = GRID_COLS * GRID_ROWS
 
 # get_cell
@@ -31,7 +30,7 @@ def get_cell(y, x):
         x = x % GRID_ROWS
     return (y * GRID_COLS + x)
 
-def grid_inizialize(grid, grid_size, state):
+def grid_initialize(grid, grid_size, state):
     for i in range(grid_size):
         grid.append(state)
 
@@ -51,28 +50,42 @@ def count_alive(grid, y, x):
     )
     return alive
 
+def generate(old_grid, new_grid):
+    for j in range(GRID_ROWS):
+        for i in range(GRID_COLS):
+            count = count_alive(old_grid, j, i)
+            if count < 2 and old_grid[get_cell(j, i)]==ALIVE:
+                new_grid[get_cell(j, i)]=DEAD
+            if (count == 2 or count == 3) and old_grid[get_cell(j, i)]==ALIVE:
+                new_grid[get_cell(j, i)]=ALIVE
+            if count == 3 and old_grid[get_cell(j, i)]==DEAD:
+                new_grid[get_cell(j, i)]=ALIVE
+            if count > 3 and old_grid[get_cell(j, i)]==ALIVE:
+                new_grid[get_cell(j, i)]=DEAD
+
 def main():
     grid = []
     new_grid = []
 
-    grid_inizialize(grid, GRID_SIZE, DEATH)
-    grid_inizialize(new_grid, GRID_SIZE, DEATH)
+    grid_initialize(grid, GRID_SIZE, DEAD)
+    grid_initialize(new_grid, GRID_SIZE, DEAD)
 
-    grid[get_cell(5, 4)] = ALIVE
-    grid[get_cell(5, 5)] = ALIVE
-    grid[get_cell(5, 6)] = ALIVE
+    #grid[get_cell(5, 4)] = ALIVE
+    #grid[get_cell(5, 5)] = ALIVE
+    #grid[get_cell(5, 6)] = ALIVE
 
-    #grid[get_cell(0, 1)] = ALIVE
-    #grid[get_cell(1, 2)] = ALIVE
-    #grid[get_cell(2, 0)] = ALIVE
-    #grid[get_cell(2, 1)] = ALIVE
-    #grid[get_cell(2, 2)] = ALIVE
+    grid[get_cell(0, 1)] = ALIVE
+    grid[get_cell(1, 2)] = ALIVE
+    grid[get_cell(2, 0)] = ALIVE
+    grid[get_cell(2, 1)] = ALIVE
+    grid[get_cell(2, 2)] = ALIVE
 
     while(True):
         show_grid(grid, GRID_COLS, GRID_ROWS)
-        # 
+        print("Press CTRL+z to stop!")
+        time.sleep(0.5)
+        generate(grid, new_grid) 
         grid = new_grid[:]
-        time.sleep(1)
 
 if __name__ == "__main__":
     main()
